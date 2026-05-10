@@ -1,16 +1,41 @@
+
 import bebidas.*
 import tito.*
 
 describe "Tests de Tito" {
-  test "Tito consume 10 de Whisky y su sustancia actual es Whisky" {
-    tito.consumir(10, whisky)
-    assert.equals(whisky, tito.sustanciaActual())
-    // assert.equals(1,1) → devuelve TRUE
-    // assert.equals(1,2) → devuelve FALSE
-  }
 
-  test "Tito consume 10 de Whisky y su dosis consumida es 10" {
-    tito.consumir(10, whisky)
-    assert.equals(10, tito.dosisConsumida())
-  }
+    test "Tito consume 10 de Whisky y su sustancia actual es Whisky" {
+        tito.consumir(10, whisky)
+        assert.equals(whisky, tito.sustanciaActual())
+        // assert.equals(1,1) → devuelve TRUE
+        // assert.equals(1,2) → devuelve FALSE
+    }
+
+    test "Tito consume 10 de Whisky y su dosis consumida es 10" {
+        tito.consumir(10, whisky)
+        assert.equals(10, tito.dosisConsumida())
+    }
+
+    test "Tito con licuado de frutas" {
+        licuado.agregarNutriente(2)
+        licuado.agregarNutriente(3)
+        tito.consumir(1000, licuado)
+        assert.equals((2+3) * 490 / 70, tito.velocidad())
+    }
+
+    test "Tito con agua saborizada con whisky" {
+        aguaSaborizada.cambiarBase(whisky)
+        tito.consumir(10, aguaSaborizada)
+        assert.that(tito.velocidad() > 0)
+    }
+
+    /*
+    test "Tito con coctel de whisky y terere" {
+        coctel.agregarBebida(whisky)
+        coctel.agregarBebida(terere)
+        tito.consumir(10, coctel)
+        assert.equals(whisky.rendimientoQueOtorga(10) * terere.rendimientoQueOtorga(10) * 490 / 70, tito.velocidad())
+    }
+    */
+
 }
